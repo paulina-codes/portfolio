@@ -8,7 +8,7 @@ Portfolio-Website zu meinen Projekten im Bereich Medizinische Informatik / Softw
 
 - **Mediplan** — WebApp zur Verwaltung verschreibungspflichtiger Medikamente unter Beachtung von Datenschutzanforderungen
 - **Pandemie-Datenbank** — Bachelorarbeit (Note 1,3): Kategorisierung des Pandemiegeschehens, konzipiert zur Anbindung an eine Planspiel-WebApp
-- **PulsPfad** — Symptom- und Medikamenten-Tracker für chronisch Kranke, mit editierbaren Vorlagen und Gamification (eigenes Konzept, klickbarer Prototyp)
+- **Medivo** — Symptom- und Medikamenten-Tracker für chronisch Kranke, mit editierbaren Vorlagen und Gamification (eigenes Konzept, klickbarer Prototyp)
 
 ## Tech-Stack
 
