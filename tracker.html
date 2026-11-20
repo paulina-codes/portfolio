@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medivo — Paulina Kranewitter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF7F1; --cream-deep:#F3ECE2; --card:#FFFFFF;
+    --rose:#E7C9C3; --rose-deep:#D9AFA8; --mocha:#5E4A3D; --cognac:#83563A; --berry:#8A4560;
+    --taupe:#7D6650; --ink:#3E3730; --ink-soft:#6B6259; --line:#E4DACC; --radius:18px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;} }
+  body{margin:0; background:var(--cream); color:var(--ink); font-family:'Jost',sans-serif; font-weight:300; line-height:1.7; -webkit-font-smoothing:antialiased;}
+  .display{font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:500; color:var(--ink);}
+  .eyebrow{font-family:'Jost',sans-serif; font-size:0.72rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--taupe); font-weight:500;}
+  a{color:inherit;}
+
+  nav{position:sticky; top:0; z-index:50; display:flex; justify-content:space-between; align-items:center;
+    padding:0.9rem clamp(1.5rem,6vw,5rem); background:rgba(251,247,241,0.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
+  /* Logo statt PK-Badge – wie auf Startseite und Mediplan */
+  .brand{display:block; border-radius:6px; transition:transform .25s ease;}
+  .brand img{display:block; height:52px; width:auto;}
+  .brand:hover{transform:translateY(-1px) scale(1.03);}
+  .back-link{font-size:0.85rem; letter-spacing:0.05em; text-decoration:none; color:var(--ink-soft); display:flex; align-items:center; gap:0.4rem;}
+  .back-link:hover{color:var(--ink);}
+  .back-link:focus-visible, a:focus-visible{outline:2px solid var(--berry); outline-offset:3px; border-radius:3px;}
+
+  section{padding:clamp(3rem,7vw,5.5rem) clamp(1.5rem,6vw,5rem);}
+  .wrap{max-width:880px; margin:0 auto;}
+
+  .pulse-wrap{max-width:880px; margin:0 auto; padding:0 clamp(1.5rem,6vw,5rem);}
+  .pulse-line{width:100%; height:34px; display:block;}
+  .pulse-path{fill:none; stroke:var(--rose-deep); stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round;
+    stroke-dasharray:600; stroke-dashoffset:600;}
+  .pulse-line.in-view .pulse-path{animation:draw 1.6s ease forwards;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+
+  .p-hero{padding-top:3.5rem; padding-bottom:2.5rem;}
+  .status{display:inline-block; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; padding:0.35rem 0.8rem; border-radius:999px; font-weight:500; margin-bottom:1.2rem;}
+  .status.progress{background:#F6E6EC; color:var(--berry);}
+  .p-hero h1{font-size:clamp(2.6rem,6vw,4rem); margin:0 0 0.9rem 0; line-height:1.08;}
+  .p-hero .sub{color:var(--ink-soft); font-size:1.08rem; max-width:640px; margin:0;}
+
+  .demo-cta{display:flex; gap:0.8rem; flex-wrap:wrap; margin-top:1.6rem;}
+  .btn{display:inline-flex; align-items:center; gap:0.5rem; padding:0.85rem 1.6rem; border-radius:999px; text-decoration:none; font-size:0.85rem; letter-spacing:0.03em; transition:transform .25s ease;}
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--ink); color:var(--cream);}
+  .btn-ghost{border:1px solid var(--taupe); color:var(--ink);}
+  .demo-note{font-size:0.78rem; color:var(--ink-soft); margin:0.7rem 0 0;}
+
+  .meta-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1.4rem; margin-top:2.6rem;}
+  @media (max-width:700px){.meta-grid{grid-template-columns:repeat(2,1fr);}}
+  .meta-block{border-top:1px solid var(--line); padding-top:0.8rem;}
+  .meta-block .k{font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--taupe); margin-bottom:0.35rem;}
+  .meta-block .v{font-size:0.92rem; color:var(--ink);}
+
+  h2.section-title{font-size:clamp(1.7rem,3vw,2.2rem); margin:0 0 1.1rem 0;}
+  .body-text p{color:var(--ink-soft); margin:0 0 1rem 0;}
+
+  .callout{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:1.6rem 1.8rem; margin-top:1.4rem;}
+  .callout .eyebrow{margin-bottom:0.5rem;}
+  .callout p{margin:0; color:var(--ink-soft); font-size:0.94rem;}
+
+  .steps{display:flex; flex-direction:column; gap:1.4rem; margin-top:1.6rem;}
+  .step{display:grid; grid-template-columns:auto 1fr; gap:1.2rem; align-items:start;}
+  .step .n{font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.6rem; color:var(--rose-deep); width:2.2rem;}
+  .step h4{margin:0 0 0.35rem 0; font-size:1.02rem; font-weight:500;}
+  .step p{margin:0; color:var(--ink-soft); font-size:0.92rem;}
+
+  .tag-row{display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1.4rem;}
+  .tag{font-size:0.75rem; color:var(--ink-soft); background:var(--cream-deep); padding:0.3rem 0.7rem; border-radius:6px;}
+
+  /* ---------- Screenshots ---------- */
+  .shot{margin:0; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:0.55rem; overflow:hidden;}
+  .shot img{width:100%; height:auto; display:block; border-radius:10px; background:var(--cream-deep); cursor:zoom-in;}
+  .shot figcaption{font-size:0.75rem; color:var(--ink-soft); padding:0.65rem 0.35rem 0.25rem;}
+  .shot figcaption strong{font-weight:500; color:var(--ink);}
+
+  .shot-grid{display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:2.2rem; align-items:start;}
+  .shot-grid .shot:first-child{grid-column:1 / -1;}
+  @media (max-width:700px){.shot-grid{grid-template-columns:1fr;}}
+
+  .gallery{display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; margin-top:1.6rem;}
+  .gallery .wide{grid-column:1 / -1;}
+  @media (max-width:700px){.gallery{grid-template-columns:1fr;}}
+
+  .modes-row{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:1.6rem;}
+  @media (max-width:700px){.modes-row{grid-template-columns:1fr;}}
+
+  .phones{display:flex; justify-content:center; gap:1.4rem; margin-top:1.6rem; flex-wrap:wrap;}
+  .phone{margin:0; width:min(210px, 28%); min-width:160px; text-align:center;}
+  .phone img{width:100%; height:auto; display:block; border-radius:26px; border:7px solid var(--ink); background:var(--cream-deep); box-shadow:0 20px 40px -24px rgba(62,55,48,.5); cursor:zoom-in;}
+  .phone figcaption{font-size:0.75rem; color:var(--ink-soft); margin-top:0.7rem;}
+  @media (max-width:560px){.phone{width:46%; min-width:0;}}
+
+  .feature-grid{display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.6rem;}
+  @media (max-width:700px){.feature-grid{grid-template-columns:1fr;}}
+  .feature{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:1.1rem 1.3rem;}
+  .feature .h{font-size:0.92rem; margin:0 0 0.3rem 0; display:flex; align-items:center; gap:0.5rem; font-weight:500;}
+  .feature p{margin:0; color:var(--ink-soft); font-size:0.85rem;}
+
+  .challenge-list{display:flex; flex-direction:column; gap:1.1rem; margin-top:1.6rem;}
+  .challenge{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:1.1rem 1.3rem;}
+  .challenge .h{font-size:0.95rem; margin:0 0 0.3rem 0; display:flex; align-items:center; gap:0.5rem;}
+  .challenge .h .ic{font-size:1rem; color:var(--rose-deep);}
+  .challenge p{margin:0; color:var(--ink-soft); font-size:0.88rem;}
+
+  .next-project{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;
+    border-top:1px solid var(--line); margin-top:1rem;}
+  .next-project a{text-decoration:none; font-size:0.9rem;}
+  .next-project .to-portfolio{color:var(--ink-soft);}
+  .next-project .to-next{color:var(--ink); border-bottom:1px solid var(--rose-deep); padding-bottom:2px;}
+
+  footer{text-align:center; padding:2.4rem 1.5rem; color:var(--ink-soft); font-size:0.78rem; border-top:1px solid var(--line);}
+
+  /* ---------- Lightbox ---------- */
+  .lightbox{border:none; padding:0; background:transparent; max-width:min(1200px,94vw); max-height:92vh; overflow:visible;}
+  .lightbox::backdrop{background:rgba(62,55,48,.78); backdrop-filter:blur(4px);}
+  .lightbox img{display:block; max-width:100%; max-height:82vh; width:auto; height:auto; margin:0 auto; border-radius:12px; background:#fff; box-shadow:0 30px 60px -20px rgba(0,0,0,.5);}
+  .lightbox p{color:var(--cream); text-align:center; font-size:.85rem; margin:.8rem 0 0;}
+  .lightbox .close{position:absolute; top:-2.6rem; right:0; background:none; border:1px solid rgba(251,247,241,.5); color:var(--cream); border-radius:999px; width:2.1rem; height:2.1rem; font-size:1.1rem; line-height:1; cursor:pointer;}
+  .lightbox .close:focus-visible{outline:2px solid var(--cream); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="portfolio.html"><img src="assets/logo.png" alt="Paulina Kranewitter – zur Startseite" width="118" height="52"></a>
+  <a class="back-link" href="portfolio.html#projects">← Zurück zum Portfolio</a>
+</nav>
+
+<section class="p-hero">
+  <div class="wrap">
+    <span class="status progress">Eigenes Konzept · In Entwicklung</span>
+    <h1 class="display">Medivo</h1>
+    <p class="sub">Eine WebApp, mit der chronisch kranke Menschen Symptome, Medikamente und Termine im Alltag dokumentieren können – mit Vorlagen für häufige Erkrankungen, einem motivierenden Companion und Darstellungsmodi, die sich an unterschiedliche Bedürfnisse anpassen.</p>
+
+    <div class="demo-cta">
+      <a class="btn btn-primary" href="medivo-demo/index.html" target="_blank" rel="noopener">Prototyp live ausprobieren →</a>
+      <a class="btn btn-ghost" href="#konzept">Zum Konzept</a>
+    </div>
+    <p class="demo-note">Interaktive Demo mit fiktiven Beispieldaten – es wird nichts gespeichert.</p>
+
+    <div class="meta-grid">
+      <div class="meta-block"><div class="k">Rolle</div><div class="v">Konzeption, UX/UI &amp; Entwicklung</div></div>
+      <div class="meta-block"><div class="k">Kontext</div><div class="v">Eigenes Portfolio-Projekt</div></div>
+      <div class="meta-block"><div class="k">Bereich</div><div class="v">Chronische Erkrankungen · Adaptive UX</div></div>
+      <div class="meta-block"><div class="k">Tools</div><div class="v">React · TypeScript · Vite · Figma</div></div>
+    </div>
+
+    <div class="shot-grid">
+      <figure class="shot">
+        <img src="assets/medivo-dashboard.webp" alt="Medivo Dashboard mit Companion-Katze, Tagesaufgaben, Fortschritt, Tagesquest und Wochenübersicht" width="1600" height="1000">
+        <figcaption><strong>Dashboard</strong> – Tagesaufgaben, Fortschritt, Tagesquest und Wochenübersicht auf einen Blick</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="assets/medivo-welcome.webp" alt="Startbildschirm von Medivo mit Logo und Katze" width="1600" height="1000" loading="lazy">
+        <figcaption><strong>Onboarding</strong> – Einstieg mit Companion</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="assets/medivo-modes.webp" alt="Auswahl von sieben Darstellungsmodi beim Onboarding" width="1600" height="1000" loading="lazy">
+        <figcaption><strong>Modusauswahl</strong> – sieben Darstellungsmodi</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<div class="pulse-wrap"><svg class="pulse-line" viewBox="0 0 880 34" preserveAspectRatio="none">
+  <path class="pulse-path" d="M0,17 L300,17 L325,4 L350,30 L375,10 L395,17 L880,17"/>
+</svg></div>
+
+<section id="konzept">
+  <div class="wrap">
+    <p class="eyebrow">Ausgangslage</p>
+    <h2 class="section-title">Worum es geht</h2>
+    <div class="body-text">
+      <p>Menschen mit chronischen Erkrankungen sollen ihren Zustand regelmäßig dokumentieren – für sich selbst, aber auch für Ärzt:innen. In der Praxis bricht diese Dokumentation oft schnell ab, weil sie als lästige Pflicht empfunden wird. Medivo setzt genau hier an: flexibel genug für ganz unterschiedliche Erkrankungen, aber so motivierend gestaltet, dass Nutzer:innen tatsächlich dranbleiben.</p>
+      <p>Dazu kommt: Nicht jede Person braucht dieselbe Oberfläche. Eine ältere Nutzerin wünscht sich große, ruhige Elemente, jemand mit ADHS eher kurze Aufgaben und schnelles Feedback. Medivo soll sich deshalb an den Menschen anpassen – nicht umgekehrt.</p>
+    </div>
+
+    <p class="eyebrow" style="margin-top:2.6rem;">Kernfunktionen</p>
+    <h2 class="section-title">Was die App kann</h2>
+    <div class="feature-grid">
+      <div class="feature"><p class="h">Tagesaufgaben &amp; Check-in</p><p>Stimmung, Medikamente, Symptome, Trinkmenge und Verdauung werden als kurze Tagesaufgaben abgefragt – ein Check-in dauert nur wenige Sekunden.</p></div>
+      <div class="feature"><p class="h">Symptome &amp; Medikation</p><p>Symptome mit Intensität von 0–10 erfassen und bearbeiten, Medikamente mit Dosis und Uhrzeit anlegen und als eingenommen abhaken.</p></div>
+      <div class="feature"><p class="h">Vorlagen für Erkrankungen</p><p>Vorlagen u. a. für Migräne, Diabetes Typ 1, Fibromyalgie, Multiple Sklerose, Rheuma und Depression – durchsuchbar und um eigene Vorlagen erweiterbar.</p></div>
+      <div class="feature"><p class="h">Tagesansicht &amp; Termine</p><p>Wochenleiste und Zeitstrahl bündeln Arzttermine, Therapien und Medikamenteneinnahmen eines Tages.</p></div>
+      <div class="feature"><p class="h">Arztzusammenfassung</p><p>Nutzer:innen wählen Zeitraum und Inhalte selbst aus und erhalten eine druckbare Übersicht als Grundlage für das nächste Arztgespräch.</p></div>
+      <div class="feature"><p class="h">Adaptive Darstellung &amp; Motivation</p><p>Sieben Modi, Dark Mode, ein optionaler Companion sowie Level, XP und Tagesquests, die konsistentes Tracking belohnen.</p></div>
+    </div>
+
+    <p class="eyebrow" style="margin-top:2.6rem;">Adaptive Oberfläche</p>
+    <h2 class="section-title">Ein Dashboard, viele Bedürfnisse</h2>
+    <div class="body-text">
+      <p>Jeder Modus verändert Farben, Schriftgrößen, Informationsdichte und Motivationselemente. Der Seniorenmodus zeigt größere Schrift und eine einspaltige Ansicht. Minimal und Autismus verzichten auf Companion, Quests und Animationen und setzen auf eine ruhige, vorhersehbare Struktur.</p>
+    </div>
+    <div class="modes-row">
+      <figure class="shot">
+        <img src="assets/medivo-kawaii.webp" alt="Dashboard im Kawaii-Modus mit rosa Akzenten" width="1600" height="1000" loading="lazy">
+        <figcaption><strong>Kawaii</strong> – freundlich und verspielt</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="assets/medivo-senioren.webp" alt="Dashboard im Seniorenmodus mit großer Schrift und einspaltigem Layout" width="1600" height="1000" loading="lazy">
+        <figcaption><strong>Senioren</strong> – groß, ruhig, einspaltig</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="assets/medivo-dark.webp" alt="Dashboard im Dark Mode" width="1600" height="1000" loading="lazy">
+        <figcaption><strong>Dark Mode</strong> – angenehm am Abend</figcaption>
+      </figure>
+    </div>
+
+    <p class="eyebrow" style="margin-top:2.6rem;">Einblicke</p>
+    <h2 class="section-title">Die Anwendung im Überblick</h2>
+    <div class="gallery">
+      <figure class="shot">
+        <img src="assets/medivo-symptome.webp" alt="Seite Symptome und Medikation mit Symptomliste und Intensitäten" width="1600" height="1000" loading="lazy">
+        <figcaption><strong>Symptome &amp; Medikation</strong> – Einträge mit Intensität bearbeiten</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="assets/medivo-termine.webp" alt="Tagesansicht mit Wochenleiste, Zeitstrahl und nächsten Terminen" width="1600" height="1000" loading="lazy">
+        <figcaption><strong>Tagesansicht</strong> – Termine und Einnahmen im Zeitstrahl</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="assets/medivo-berichte.webp" alt="Arztzusammenfassung mit Auswahl der Inhalte, wichtigsten Werten und Berichtsvorschau" width="1600" height="1000" loading="lazy">
+        <figcaption><strong>Arztzusammenfassung</strong> – Inhalte wählen, Werte prüfen, drucken</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="assets/medivo-meinedaten.webp" alt="Meine Daten mit Profil und Einstellungen zur Kommunikation" width="1600" height="1000" loading="lazy">
+        <figcaption><strong>Meine Daten</strong> – festlegen, wie Medivo kommunizieren soll</figcaption>
+      </figure>
+    </div>
+
+    <div class="phones">
+      <figure class="phone">
+        <img src="assets/medivo-mobile-dashboard.webp" alt="Mobile Ansicht des Dashboards" width="600" height="1299" loading="lazy">
+        <figcaption>Dashboard mobil</figcaption>
+      </figure>
+      <figure class="phone">
+        <img src="assets/medivo-mobile-menu.webp" alt="Mobile Ansicht mit geöffnetem Menü" width="600" height="1299" loading="lazy">
+        <figcaption>Navigation</figcaption>
+      </figure>
+      <figure class="phone">
+        <img src="assets/medivo-mobile-termine.webp" alt="Mobile Tagesansicht mit Terminen" width="600" height="1299" loading="lazy">
+        <figcaption>Tagesansicht</figcaption>
+      </figure>
+    </div>
+
+    <p class="eyebrow" style="margin-top:2.6rem;">Vorgehen</p>
+    <h2 class="section-title">Wie ich es umgesetzt habe</h2>
+    <div class="steps">
+      <div class="step">
+        <span class="n">01</span>
+        <div><h4>Recherche zu Erkrankungsbildern</h4><p>Analyse typischer Symptome und Verlaufsmuster bei häufigen chronischen Erkrankungen als Grundlage für die Vorlagen.</p></div>
+      </div>
+      <div class="step">
+        <span class="n">02</span>
+        <div><h4>UX-Konzept &amp; erster Prototyp</h4><p>Konzeption von Onboarding, Motivationslogik und kontextsensitiven Nachfragen. Ein erster klickbarer Prototyp in HTML, CSS und JavaScript diente dazu, die Abläufe früh zu testen.</p></div>
+      </div>
+      <div class="step">
+        <span class="n">03</span>
+        <div><h4>Mockups für alle Kernbereiche</h4><p>Gestaltung aller Screens – von Onboarding und Modusauswahl über Dashboard, Symptome und Termine bis zur Arztzusammenfassung – inklusive der einzelnen Darstellungsmodi.</p></div>
+      </div>
+      <div class="step">
+        <span class="n">04</span>
+        <div><h4>Interaktiver React-Prototyp</h4><p>Umsetzung der Mockups mit React und TypeScript: wiederverwendbare Komponenten, Design-Tokens für die Modi, responsives Layout und gezeichnete SVG-Illustrationen statt Standard-Emojis.</p></div>
+      </div>
+    </div>
+
+    <div class="gallery">
+      <figure class="shot wide">
+        <img src="assets/medivo-mockups.webp" alt="Übersicht der Medivo-Mockups: Onboarding, Login, Dashboard, Modusauswahl und weitere Screens" width="1536" height="1024" loading="lazy">
+        <figcaption><strong>Mockups</strong> – die Vorlage für den aktuellen Prototyp</figcaption>
+      </figure>
+    </div>
+
+    <p class="eyebrow" style="margin-top:2.6rem;">Herausforderungen &amp; Learnings</p>
+    <h2 class="section-title">Was nicht auf Anhieb funktioniert hat</h2>
+    <div class="challenge-list">
+      <div class="challenge">
+        <p class="h"><span class="ic">↳</span> Gamification ohne Kitsch</p>
+        <p>Belohnungen mussten motivierend wirken, ohne eine ernsthafte gesundheitliche Situation zu verharmlosen. Die Balance zwischen spielerisch und respektvoll war die größte gestalterische Herausforderung. Deshalb lassen sich Companion und Quests abschalten oder sind in ruhigeren Modi gar nicht erst sichtbar.</p>
+      </div>
+      <div class="challenge">
+        <p class="h"><span class="ic">↳</span> Ein Interface, viele Modi</p>
+        <p>Sieben Modi dürfen nicht zu sieben verschiedenen Apps werden. Alle Modi teilen sich dieselben Komponenten und unterscheiden sich nur über Design-Tokens wie Farben, Größen, Abstände und Animationen. So bleibt die Bedienung überall gleich.</p>
+      </div>
+      <div class="challenge">
+        <p class="h"><span class="ic">↳</span> Flexibilität vs. Struktur</p>
+        <p>Vorlagen mussten strukturiert genug sein, um sinnvolle Auswertungen zu ermöglichen, aber gleichzeitig frei erweiterbar bleiben – das erfordert ein flexibles Datenmodell statt starrer Formulare.</p>
+      </div>
+      <div class="challenge">
+        <p class="h"><span class="ic">↳</span> Ehrlich mit Gesundheitsdaten umgehen</p>
+        <p>Die App kennzeichnet klar, was Demo ist: fiktive Daten, keine Speicherung, kein medizinischer Befund. Datenschutzfunktionen wie verschlüsselte Übertragung sind als geplant markiert und werden nicht als vorhanden dargestellt.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p class="eyebrow">Stand &amp; Ausblick</p>
+      <p>Der aktuelle React-Prototyp läuft vollständig im Browser mit Beispieldaten und ohne Backend. Als Nächstes würde ich eine Anbindung an eine Datenbank (Spring Boot, PostgreSQL) mit sicherer Authentifizierung umsetzen, die Mehrsprachigkeit vollständig ausbauen und die smarten Nachfragen aus dem ersten Prototyp wieder integrieren – z. B. bei starken Kopfschmerzen die Nachfrage nach Übelkeit oder Lichtempfindlichkeit. Begleitend sind Accessibility-Tests geplant.</p>
+    </div>
+
+    <div class="tag-row">
+      <span class="tag">UX/UI-Konzept</span>
+      <span class="tag">Adaptive Interfaces</span>
+      <span class="tag">Gamification</span>
+      <span class="tag">Chronische Erkrankungen</span>
+      <span class="tag">React</span>
+      <span class="tag">TypeScript</span>
+    </div>
+  </div>
+</section>
+
+<div class="pulse-wrap"><svg class="pulse-line" viewBox="0 0 880 34" preserveAspectRatio="none">
+  <path class="pulse-path" d="M0,17 L300,17 L325,4 L350,30 L375,10 L395,17 L880,17"/>
+</svg></div>
+
+<section>
+  <div class="wrap next-project">
+    <a class="to-portfolio" href="portfolio.html#projects">← Zurück zum Portfolio</a>
+    <a class="to-next" href="mediplan.html">Erstes Projekt: Mediplan →</a>
+  </div>
+</section>
+
+<footer>© 2026 Paulina Kranewitter · Medizinische Informatikerin B.Sc.</footer>
+
+<dialog class="lightbox" aria-label="Vergrößerte Ansicht">
+  <button class="close" type="button" aria-label="Schließen">×</button>
+  <img src="" alt="">
+  <p></p>
+</dialog>
+
+<script>
+  const pulses = document.querySelectorAll('.pulse-line');
+  const io = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');}});}, {threshold:0.4});
+  pulses.forEach(p=>io.observe(p));
+
+  // Lightbox: Klick auf einen Screenshot vergrößert ihn
+  const lb = document.querySelector('.lightbox');
+  if(lb && typeof lb.showModal === 'function'){
+    const lbImg = lb.querySelector('img'), lbCap = lb.querySelector('p');
+    const open = (img)=>{
+      lbImg.src = img.currentSrc || img.src; lbImg.alt = img.alt;
+      const cap = img.closest('figure')?.querySelector('figcaption');
+      lbCap.textContent = cap ? cap.textContent.trim() : '';
+      lb.showModal();
+    };
+    document.querySelectorAll('.shot img, .phone img').forEach(img=>{
+      img.tabIndex = 0; img.setAttribute('role','button');
+      img.addEventListener('click', ()=>open(img));
+      img.addEventListener('keydown', e=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); open(img); } });
+    });
+    lb.querySelector('.close').addEventListener('click', ()=>lb.close());
+    lb.addEventListener('click', e=>{ if(e.target === lb) lb.close(); });
+  }
+</script>
+</body>
+</html>
